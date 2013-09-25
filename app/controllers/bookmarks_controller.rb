@@ -18,6 +18,7 @@ class BookmarksController < ApplicationController
   end
 
   def edit
+    @tag_list = Tag.all.map(&:name)
   end
 
   def create

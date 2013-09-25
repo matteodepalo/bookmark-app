@@ -3,3 +3,13 @@
   <%= f.input :tag_list %>
   <%= f.button :submit %>
 <% end %>
+
+<script>
+  $(function() {
+    $('#bookmark_tag_list').select2({
+      width: 'resolve',
+      tags: <%= raw @bookmark.tags.map(&:name) %>,
+      tokenSeparators: [","]
+    })
+  })
+</script>
