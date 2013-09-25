@@ -1,5 +1,5 @@
 <%= form_tag bookmarks_path, method: :get do %>
-  <%= text_field_tag :query %>
+  <%= text_field_tag :query, params[:query] %>
 <% end %>
 
 <h1>Listing bookmarks</h1>

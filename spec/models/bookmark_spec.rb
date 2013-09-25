@@ -1,12 +1,6 @@
 require 'spec_helper'
 
 describe Bookmark, :stub_shortener, :stub_parsing do
-  it 'trims url white spaces' do
-    bookmark = Bookmark.new(url: 'http://google.com ')
-    bookmark.save!
-    bookmark.url.should eq('http://google.com')
-  end
-
   it 'has a shortened url' do
     bookmark = Bookmark.new(url: 'http://google.com?' + 'long' * 10)
     bookmark.save!

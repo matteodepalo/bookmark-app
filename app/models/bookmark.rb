@@ -4,8 +4,8 @@ class Bookmark < ActiveRecord::Base
   include Trimmable
   include Searchable
 
-  ATTRIBUTES_TO_TRIM = [:url]
-  SEARCHABLE_ATTRIBUTES = [:title, :url]
+  trimmable :url
+  searchable :title, :url
 
   belongs_to :site
   has_and_belongs_to_many :tags

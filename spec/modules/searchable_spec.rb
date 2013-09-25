@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 Temping.create :searchable_model do
   with_columns do |t|
     t.string :title
@@ -6,7 +8,7 @@ Temping.create :searchable_model do
 
   include Searchable
 
-  SEARCHABLE_ATTRIBUTES = [:title, :url]
+  searchable :title, :url
 end
 
 describe SearchableModel do

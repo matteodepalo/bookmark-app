@@ -3,7 +3,7 @@
 class Tag < ActiveRecord::Base
   include Trimmable
 
-  ATTRIBUTES_TO_TRIM = [:name]
+  trimmable :name
 
   has_and_belongs_to_many :bookmarks
 
