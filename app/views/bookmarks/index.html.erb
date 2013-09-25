@@ -1,17 +1,22 @@
 <h1>Bookmarks</h1>
 
-<% if @bookmarks.present? %>
-  <%= form_tag bookmarks_path, method: :get, html: { class: 'form-search' } do %>
-    <%= text_field_tag :query, params[:query], class: 'input-medium search-query' %>
-    <%= submit_tag 'Search', class: 'btn' %>
-  <% end %>
-<% end %>
-
 <table class="table">
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Shortened url</th>
+      <th>Title</th>
+      <th>Tags</th>
+    </tr>
+  </thead>
+
   <tbody>
     <% @bookmarks.each do |bookmark| %>
       <tr>
         <td><%= link_to bookmark.url, bookmark %></td>
+        <td><%= bookmark.shortened_url %></td>
+        <td><%= bookmark.title %></td>
+        <td><%= bookmark.tag_list %></td>
       </tr>
     <% end %>
   </tbody>
