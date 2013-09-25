@@ -1,3 +1,7 @@
+<%= form_tag bookmarks_path, method: :get do %>
+  <%= text_field_tag :query %>
+<% end %>
+
 <h1>Listing bookmarks</h1>
 
 <table>
@@ -6,6 +10,7 @@
       <th>Url</th>
       <th>Shortened url</th>
       <th>Title</th>
+      <th>Tags</th>
       <th></th>
       <th></th>
       <th></th>
@@ -18,6 +23,7 @@
         <td><%= bookmark.url %></td>
         <td><%= bookmark.shortened_url %></td>
         <td><%= bookmark.title %></td>
+        <td><%= bookmark.tag_list %></td>
         <td><%= link_to 'Show', bookmark %></td>
         <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
         <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,13 +1,26 @@
 require 'open-uri'
 
 class Bookmark < ActiveRecord::Base
+  include Trimmable
+  include Searchable
+
+  ATTRIBUTES_TO_TRIM = [:url]
+  SEARCHABLE_ATTRIBUTES = [:title, :url]
+
   belongs_to :site
+  has_and_belongs_to_many :tags
 
-  validate :url, presence: true
-  validate :site, presence: true
+  validates :url, url: true
 
-  after_save :update_shortened_url, :update_title, if: -> { url_changed? }
-  before_validation :add_site
+  before_save :update_shortened_url, :update_title, :update_site, if: :url_changed?
+
+  def tag_list=(tag_list)
+    self.tags = tag_list.split(',').map(&:strip).map{ |tag_name| Tag.where(name: tag_name).first_or_initialize }
+  end
+
+  def tag_list
+    tags.map(&:name).join(', ')
+  end
 
   private
 
@@ -19,7 +32,7 @@ class Bookmark < ActiveRecord::Base
     self.title = Nokogiri::HTML(open(url)).css('title').text
   end
 
-  def add_site
+  def update_site
     self.site = Site.find_or_initialize_by_url(self.url)
   end
 end

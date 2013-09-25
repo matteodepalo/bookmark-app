@@ -27,14 +27,15 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'zurb-foundation'
 gem 'shorturl'
 gem 'nokogiri'
+gem 'validate_url'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'debugger'
+  gem 'temping'
 end
 
 group :doc do
