@@ -13,6 +13,8 @@ class Bookmark < ActiveRecord::Base
   validates :url, url: true
 
   before_save :update_shortened_url, :update_title, :update_site, if: :url_changed?
+  after_destroy :destroy_site
+  after_update :destroy_site
 
   def tag_list=(tag_list)
     self.tags = tag_list.split(',').map(&:strip).map{ |tag_name| Tag.where(name: tag_name).first_or_initialize }
@@ -34,5 +36,10 @@ class Bookmark < ActiveRecord::Base
 
   def update_site
     self.site = Site.find_or_initialize_by_url(self.url)
+  end
+
+  def destroy_site
+    site = Site.find(site_id_was)
+    site.destroy if site.bookmarks.count == 0
   end
 end

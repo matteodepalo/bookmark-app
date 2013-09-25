@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'shorturl'
 gem 'nokogiri'
 gem 'validate_url'
+gem 'bootstrap-sass'
+gem 'simple_form'
 
 group :development, :test do
   gem 'rspec-rails'

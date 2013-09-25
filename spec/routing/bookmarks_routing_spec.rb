@@ -15,16 +15,8 @@ describe BookmarksController do
       get("/bookmarks/1").should route_to("bookmarks#show", :id => "1")
     end
 
-    it "routes to #edit" do
-      get("/bookmarks/1/edit").should route_to("bookmarks#edit", :id => "1")
-    end
-
     it "routes to #create" do
       post("/bookmarks").should route_to("bookmarks#create")
-    end
-
-    it "routes to #update" do
-      put("/bookmarks/1").should route_to("bookmarks#update", :id => "1")
     end
 
     it "routes to #destroy" do

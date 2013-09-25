@@ -1,32 +1,17 @@
-<%= form_tag bookmarks_path, method: :get do %>
-  <%= text_field_tag :query, params[:query] %>
-<% end %>
-
 <h1>Listing bookmarks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Url</th>
-      <th>Shortened url</th>
-      <th>Title</th>
-      <th>Tags</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% if @bookmarks.present? %>
+  <%= form_tag bookmarks_path, method: :get, html: { class: 'form-search' } do %>
+    <%= text_field_tag :query, params[:query], class: 'input-medium search-query' %>
+    <%= submit_tag 'Search', class: 'btn' %>
+  <% end %>
+<% end %>
 
+<table class="table">
   <tbody>
     <% @bookmarks.each do |bookmark| %>
       <tr>
-        <td><%= bookmark.url %></td>
-        <td><%= bookmark.shortened_url %></td>
-        <td><%= bookmark.title %></td>
-        <td><%= bookmark.tag_list %></td>
-        <td><%= link_to 'Show', bookmark %></td>
-        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to bookmark.url, bookmark %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +19,4 @@
 
 <br>
 
-<%= link_to 'New Bookmark', new_bookmark_path %>
+<%= link_to 'New Bookmark', new_bookmark_path, class: 'btn btn-primary' %>

@@ -1,0 +1,20 @@
+<%= content_for(:content) do %>
+  <div class="row">
+    <nav class="span3">
+     <div class="well sites">
+        <ul class="nav nav-list">
+         <li class="nav-header">Sites</li>
+
+         <% @sites.each do |site| %>
+           <li class="<%= current_page?(site_path(site)) ? 'active' : '' %>"><%= link_to site.domain, site %></li>
+         <% end %>
+       </ul>
+     </div>
+    </nav>
+
+    <div class="span9">
+      <%= yield %>
+    </div>
+  </div>
+<% end %>
+<%= render template: 'layouts/application' %>
