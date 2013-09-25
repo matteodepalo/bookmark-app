@@ -40,12 +40,6 @@
             <% end %>
           <% end %>
 
-          <div class="tags">
-            <% Tag.all.each do |tag| %>
-              <span class="label label-info <%= params[:tags] && params[:tags].include?(tag.name) ? 'active' : '' %>"><%= tag.name %></span>
-            <% end %>
-          </div>
-
           <%= content_for?(:content) ? yield(:content) : yield %>
         </div>
       </div>

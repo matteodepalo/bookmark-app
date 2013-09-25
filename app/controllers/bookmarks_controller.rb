@@ -9,7 +9,7 @@ class BookmarksController < ApplicationController
       @bookmarks = Bookmark.all
     end
 
-    @bookmarks = @bookmarks.joins(:tags).where('tags.name' => params[:tags]) if params[:tags].present?
+    @bookmarks = @bookmarks.joins(:tags).where('tags.name' => params[:tags]).distinct if params[:tags].present?
   end
 
   def show

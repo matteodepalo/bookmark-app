@@ -8,6 +8,13 @@
          <% @sites.each do |site| %>
            <li class="<%= current_page?(site_path(site)) ? 'active' : '' %>"><%= link_to site.domain, site %></li>
          <% end %>
+
+         <div class="tags">
+            <li class="nav-header">Tags</li>
+            <% Tag.all.each do |tag| %>
+              <span class="label label-info <%= params[:tags] && params[:tags].include?(tag.name) ? 'active' : '' %>"><%= tag.name %></span>
+            <% end %>
+         </div>
        </ul>
      </div>
     </nav>
