@@ -5,15 +5,16 @@
         <ul class="nav nav-list">
          <li class="nav-header">Sites</li>
 
-         <% @sites.each do |site| %>
+         <% Site.all.each do |site| %>
            <li class="<%= current_page?(site_path(site)) ? 'active' : '' %>"><%= link_to site.domain, site %></li>
          <% end %>
 
+        <li class="nav-header">Tags</li>
+
          <div class="tags">
-            <li class="nav-header">Tags</li>
-            <% Tag.all.each do |tag| %>
-              <span class="label label-info <%= params[:tags] && params[:tags].include?(tag.name) ? 'active' : '' %>"><%= tag.name %></span>
-            <% end %>
+          <% Tag.all.each do |tag| %>
+            <span class="label label-info <%= params[:tags] && params[:tags].include?(tag.name) ? 'active' : '' %>"><%= tag.name %></span>
+          <% end %>
          </div>
        </ul>
      </div>

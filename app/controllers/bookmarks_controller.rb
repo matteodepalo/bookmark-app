@@ -1,6 +1,5 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
-  before_action :set_sites, except: [:destroy]
 
   def index
     if params[:query].present?
@@ -54,10 +53,6 @@ class BookmarksController < ApplicationController
   end
 
   private
-
-  def set_sites
-    @sites = Site.all
-  end
 
   def set_bookmark
     @bookmark = Bookmark.find(params[:id])

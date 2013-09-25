@@ -2,7 +2,6 @@ class SitesController < ApplicationController
   layout 'bookmarks'
 
   def show
-    @sites = Site.all
     @site = Site.find(params[:id])
     @bookmarks = @site.bookmarks
 
