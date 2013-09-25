@@ -8,3 +8,15 @@
 .select2-drop {
   display: none !important;
 }
+
+.tags {
+  margin-bottom: 15px;
+
+  span {
+    cursor: pointer;
+
+    &.active {
+      background-color: darken($infoBackground, 30%);
+    }
+  }
+}

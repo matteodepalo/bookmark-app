@@ -14,9 +14,15 @@
           <li class="<%= current_page?(bookmarks_path) ? 'active' : '' %>"><%= link_to 'Bookmarks', bookmarks_path %></li>
         </ul>
 
-        <% if @bookmarks.present? %>
+        <% if Bookmark.count > 0 %>
           <%= form_tag bookmarks_path, method: :get, class: 'navbar-search pull-right' do %>
             <%= text_field_tag :query, params[:query], class: 'search-query', placeholder: 'Search' %>
+
+            <% if params[:tags].present? %>
+              <% params[:tags].each do |tag| %>
+                <%= hidden_field_tag 'tags[]', tag, id: nil %>
+              <% end %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
@@ -33,6 +39,12 @@
               </div>
             <% end %>
           <% end %>
+
+          <div class="tags">
+            <% Tag.all.each do |tag| %>
+              <span class="label label-info <%= params[:tags] && params[:tags].include?(tag.name) ? 'active' : '' %>"><%= tag.name %></span>
+            <% end %>
+          </div>
 
           <%= content_for?(:content) ? yield(:content) : yield %>
         </div>

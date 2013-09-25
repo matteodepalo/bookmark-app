@@ -16,3 +16,17 @@
 //= require bootstrap
 //= require select2
 //= require_tree .
+
+$(function() {
+  $('.tags span').on('click', function() {
+    if($(this).hasClass('active')) {
+      $(this).removeClass('active');
+      $('.navbar-search input[value=' + $(this).text() + ']').remove()
+    } else {
+      $(this).addClass('active');
+      $('.navbar-search').append('<input name="tags[]" type="hidden" value="' + $(this).text() + '">')
+    }
+
+    $('.navbar-search').submit()
+  });
+});

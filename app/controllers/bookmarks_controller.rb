@@ -8,6 +8,8 @@ class BookmarksController < ApplicationController
     else
       @bookmarks = Bookmark.all
     end
+
+    @bookmarks = @bookmarks.joins(:tags).where('tags.name' => params[:tags]) if params[:tags].present?
   end
 
   def show
